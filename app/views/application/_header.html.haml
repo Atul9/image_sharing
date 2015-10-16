@@ -1,0 +1,35 @@
+.navbar.navbar-inverse.navbar-static-top
+  .navbar-header
+    = link_to 'Home', root_path, class: 'navbar-brand'
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li= link_to 'Albums', '#'
+    - if user_signed_in?
+      %ul.nav.navbar-nav
+        %li.dropdown
+          = link_to 'My albums', user_albums_path(current_user)
+          -#, class: 'dropdown-toggle', "data-toggle" => "dropdown", "aria-expanded" => false do
+            Categories
+            %span{class: 'caret'}
+          -#%ul{class: 'dropdown-menu'}
+            %li"Incomes"
+            %li"Expenses"
+      %ul.nav.navbar-nav
+        %li.dropdown
+          = link_to 'Reports', class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => false do
+            Reports
+            %span.caret
+              %ul.dropdown-menu
+                %li'Expenses'
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          = link_to "#{current_user.email}", class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => false do
+            #{current_user.email}
+            %span.carent
+              %ul.dropdown-menu
+                %li= link_to 'Profile', edit_user_registration_path
+                %li= link_to "Logout", destroy_user_session_path, method: :delete
+    - unless user_signed_in?
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Login', new_user_session_path, class: 'btn btn-primary'
+        %li= link_to ""

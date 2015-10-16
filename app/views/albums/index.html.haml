@@ -1,0 +1,16 @@
+- if user_signed_in?
+  = link_to 'Create New', new_user_album_path(current_user), class: 'btn btn-primary'
+%table{border: 2}
+  %thead
+    %th Album Name
+    %th Album Date
+    %th User
+    %th Actions
+  %tbody
+    - @albums.each do |album|
+      %td= album.name
+      %td= album.created_at
+      %td= album.user.email
+      %td
+        = link_to 'Show', album_path
+        = link_to 'Edit', edit_album_path

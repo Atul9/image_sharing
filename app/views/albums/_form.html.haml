@@ -1,0 +1,9 @@
+.mid-form
+  = simple_nested_form_for @album, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+    = f.input :name
+    = f.fields_for :photos, @album.photos do |pic|
+      = pic.input :photo, as: :file
+      = pic.input :tag_line
+    = f.link_to_add 'Add more photos', :photos, id: 'add_photos'
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Cancel', user_albums_path, class: 'btn btn-danger'
