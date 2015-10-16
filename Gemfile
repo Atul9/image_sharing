@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -28,6 +28,8 @@ gem 'quiet_assets'
 gem 'haml-rails'
 gem 'devise'
 gem 'paperclip'
+gem 'puma'
+gem 'nested_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
