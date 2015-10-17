@@ -1,5 +1,5 @@
 .mid-form
-  = simple_nested_form_for @album, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+  = simple_nested_form_for [current_user, @album], html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
     = f.input :name
     = f.fields_for :photos, @album.photos do |pic|
       = pic.input :photo, as: :file

@@ -1,6 +1,8 @@
 class AlbumsController < ApplicationController
+  before_action :set_album, only: [:show, :edit, :update, :destroy]
+
   def index
-    @albums = Album.where(user: current_user)
+    @albums = current_user.albums
   end
 
   def new
@@ -8,7 +10,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(album_params)
+    @album = current_user.albums.new(album_params)
     if @album.save
       redirect_to root_path
     else
@@ -17,11 +19,12 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = Album.find(params[:id])
+  end
+
+  def show
   end
 
   def update
-    @album = Album.find(params[:id])
     if @album.update_attributes(album_params)
       redirect_to root_path
     else
@@ -30,7 +33,11 @@ class AlbumsController < ApplicationController
   end
 
   private
-  def album_params
-    params.require(:album).permit(:name, photos_attributes: [:image, :tag_line])
-  end
+    def album_params
+      params.require(:album).permit(:name, photos_attributes: [:image, :tag_line])
+    end
+
+    def set_album
+      @album = Album.where(id: params[:id]).first
+    end
 end

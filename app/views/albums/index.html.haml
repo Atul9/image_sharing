@@ -12,5 +12,5 @@
       %td= album.created_at
       %td= album.user.email
       %td
-        = link_to 'Show', album_path
-        = link_to 'Edit', edit_album_path
+        = link_to 'Show', user_album_path(current_user, album)
+        = link_to 'Edit', edit_user_album_path(current_user, album)
