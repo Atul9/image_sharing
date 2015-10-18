@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_filter :set_album, only: [:show, :edit, :update, :destroy]
 
   def index
     @albums = current_user.albums
@@ -20,7 +20,6 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = Album.find(params[:id])
   end
 
   def update
@@ -32,7 +31,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id])
   end
 
   private
