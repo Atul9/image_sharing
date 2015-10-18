@@ -7,6 +7,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+    @album.photos.build
   end
 
   def create
@@ -19,9 +20,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-  end
-
-  def show
+    @album = Album.find(params[:id])
   end
 
   def update
@@ -32,12 +31,16 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def show
+    @album = Album.find(params[:id])
+  end
+
   private
     def album_params
-      params.require(:album).permit(:name, photos_attributes: [:image, :tag_line])
+      params.require(:album).permit(:name, photos_attributes: [:id, :image, :tag_line])
     end
 
     def set_album
-      @album = Album.where(id: params[:id]).first
+      @album = Album.find(params[:id])
     end
 end
