@@ -2,15 +2,17 @@
   = link_to 'Create New', new_user_album_path(current_user), class: 'btn btn-primary'
 %table{border: 2}
   %thead
-    %th Album Name
-    %th Album Date
-    %th User
-    %th Actions
+    %tr
+      %th Album Name
+      %th Album Date
+      %th User
+      %th Actions
   %tbody
     - @albums.each do |album|
-      %td= album.name
-      %td= album.created_at
-      %td= album.user.email
-      %td
-        = link_to 'Show', user_album_path(current_user, album)
-        = link_to 'Edit', edit_user_album_path(current_user, album)
+      %tr{ id: "album_#{album.id}"}
+        %td= album.name
+        %td= album.created_at
+        %td= album.user.email
+        %td
+          = link_to 'Show', user_album_path(current_user, album)
+          = link_to 'Edit', edit_user_album_path(current_user, album)
