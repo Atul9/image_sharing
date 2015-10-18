@@ -1,3 +1,13 @@
 %h3= @album.name
-%span= @album.created_at
-
+%span= @album.created_at.strftime('%d-%m-%Y')
+.mid-form
+  %table{border: 2}
+    %thead
+      %th Pictures
+      %th Tag
+    %tbody
+      - @album.photos.each do |pic|
+        %tr
+          %td= image_tag pic.image.url(:medium)
+          %td= pic.tag_line
+  = link_to 'Back', user_albums_path(current_user), class: 'btn btn-danger'
